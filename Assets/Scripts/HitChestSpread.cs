@@ -27,7 +27,7 @@ public class HitChestSpread : MonoBehaviour {
 			other.GetComponent<Hunter> ().Fear ();
 			break;
 		case "Banana":
-
+			other.GetComponent<Banana> ().Drop ();
 			break;
 		}
 	}

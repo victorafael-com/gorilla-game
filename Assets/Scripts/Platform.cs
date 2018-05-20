@@ -5,7 +5,7 @@ using UnityEngine;
 public class Platform : MonoBehaviour {
 	public Transform end;
 	public Transform[] enemyPositions;
-	public Rect[] BananaSpawnPos;
+	public Rect[] bananaSpawnPos;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +18,9 @@ public class Platform : MonoBehaviour {
 		Gizmos.color = Color.red;
 		foreach (var t in enemyPositions) {
 			Gizmos.DrawSphere (t.position, 0.2f);
+		}
+		foreach(var r in bananaSpawnPos){
+			Gizmos.DrawWireCube(transform.position + new Vector3(r.center.x, r.center.y), new Vector3(r.size.x, r.size.y));
 		}
 	}
 
@@ -39,6 +42,14 @@ public class Platform : MonoBehaviour {
 				if (Random.value < config.secondEnemyChance + config.chanceIncrease * transform.position.x) {
 					Instantiate (RandomItem<GameObject> (config.enemyPrefabs), second.position, Quaternion.identity);
 				}
+			}
+		}
+
+		if (bananaSpawnPos.Length > 0 && Random.value < config.bananaChance) {
+			int bananaCount = Random.Range (1, config.maxBanana + Mathf.FloorToInt (transform.position.x / config.maxBananaIncrement));
+			for (int i = 0; i < bananaCount; i++) {
+				Rect r = RandomItem<Rect> (bananaSpawnPos);
+				Instantiate (config.bananaPrefab, transform.position + new Vector3 (Random.Range (r.xMin, r.xMax), Random.Range (r.yMin, r.yMax)), Quaternion.identity);
 			}
 		}
 	}

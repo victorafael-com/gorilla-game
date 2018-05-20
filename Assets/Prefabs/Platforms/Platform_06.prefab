@@ -188,7 +188,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1251683246744372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 47.081047, y: -31.604185, z: -0.098079786}
+  m_LocalPosition: {x: 0.45795536, y: -13.652933, z: -0.098079786}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4773132348472576}
@@ -408,12 +408,27 @@ MonoBehaviour:
   - {fileID: 4663780245113664}
   - {fileID: 4976368487202866}
   - {fileID: 4107665086756948}
-  BananaSpawnPos:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
+  bananaSpawnPos:
+  - serializedVersion: 2
+    x: 0.85
+    y: 0.55
+    width: 4.93
+    height: 4.17
+  - serializedVersion: 2
+    x: 9.04
+    y: 0.55
+    width: 4.93
+    height: 4.17
+  - serializedVersion: 2
+    x: 17.6
+    y: 0.55
+    width: 4.93
+    height: 4.17
+  - serializedVersion: 2
+    x: 26.2
+    y: 0.55
+    width: 4.93
+    height: 4.17
 --- !u!212 &212470324118309958
 SpriteRenderer:
   m_ObjectHideFlags: 1

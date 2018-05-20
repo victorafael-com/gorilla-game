@@ -14,4 +14,5 @@ public class Config{
 	public float bananaChance = 0.4f;
 
 	public GameObject[] enemyPrefabs;
+	public GameObject bananaPrefab;
 }

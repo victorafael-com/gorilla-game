@@ -223,7 +223,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1251683246744372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.027365, y: 8.0685215, z: -0.098079786}
+  m_LocalPosition: {x: 6.141053, y: -13.792395, z: -0.098079786}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4491116840185564}
@@ -446,12 +446,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   end: {fileID: 4459302898408018}
   enemyPositions: []
-  BananaSpawnPos:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
+  bananaSpawnPos:
+  - serializedVersion: 2
+    x: 2.11
+    y: 1.37
+    width: 0.15
+    height: 0.15
+  - serializedVersion: 2
+    x: -0.65
+    y: -0.52
+    width: 0.15
+    height: 0.15
+  - serializedVersion: 2
+    x: 9.57
+    y: 1.37
+    width: 0.15
+    height: 0.15
+  - serializedVersion: 2
+    x: 16.79
+    y: 1.37
+    width: 0.15
+    height: 0.15
+  - serializedVersion: 2
+    x: 6.46
+    y: -0.43
+    width: 0.15
+    height: 0.15
+  - serializedVersion: 2
+    x: 13.11
+    y: -0.5
+    width: 0.15
+    height: 0.15
+  - serializedVersion: 2
+    x: 18.45
+    y: 1.75
+    width: 0.15
+    height: 0.15
+  - serializedVersion: 2
+    x: 19.97
+    y: 2.1
+    width: 0.15
+    height: 0.15
 --- !u!114 &114627731670019776
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -785,9 +785,14 @@ MonoBehaviour:
     firstEnemyChance: 0.45
     secondEnemyChance: 0.05
     chanceIncrease: 0.002
+    maxBanana: 4
+    maxBananaIncrement: 50
+    bananaChance: 0.4
     enemyPrefabs:
     - {fileID: 1014197397908074, guid: f6b780051e902bf47b14ca5b4e3a4dd5, type: 2}
     - {fileID: 1014197397908074, guid: 0111721049deef841a7479595a64a524, type: 2}
+    bananaPrefab: {fileID: 1406536766937812, guid: b29e973d23aa5dd4db7a70a3c7aee18d,
+      type: 2}
 --- !u!1 &1467250003
 GameObject:
   m_ObjectHideFlags: 0
