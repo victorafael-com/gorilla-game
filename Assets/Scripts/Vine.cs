@@ -36,7 +36,10 @@ public class Vine : MonoBehaviour {
 	public Vector2 GetReleaseForce(){
 		float direction = Mathf.Sign (Mathf.Cos (t)) * currentDirection;
 		float intensity = Mathf.InverseLerp (-1, 1, Mathf.Sin (t)) * direction;
-		return transform.right * intensity * maxReleaseForce;
+		if (direction == -1) {
+			intensity = 1 - intensity;
+		}
+		return transform.right * intensity * maxReleaseForce * direction;
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
