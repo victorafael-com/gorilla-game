@@ -144,8 +144,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.08159903, y: 0.826396}
-  m_Size: {x: 0.8372759, y: 1.652792}
+  m_Offset: {x: 0.08159903, y: 0.5173945}
+  m_Size: {x: 0.8372759, y: 1.034789}
   m_Direction: 0
 --- !u!4 &114705405
 Transform:
@@ -158,6 +158,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1761906504}
+  - {fileID: 269010858}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -193,10 +194,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2
-  jumpSpeed: 4
+  jumpSpeed: 6
   _rigidBody: {fileID: 114705406}
   _animator: {fileID: 1761906505}
   _controls: {fileID: 114705408}
+  _vinePosition: {fileID: 269010858}
 --- !u!114 &114705408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +214,34 @@ MonoBehaviour:
   jump: Jump
   attack: Fire1
   hitChest: Fire2
+--- !u!1 &269010857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 269010858}
+  m_Layer: 0
+  m_Name: VinePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: -2349822300998112484, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &269010858
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 269010857}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.77, y: 0.97, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 114705405}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &518887798
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,6 +323,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &640588778
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 640588779}
+  m_Layer: 9
+  m_Name: vinePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &640588779
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 640588778}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1390012521}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1390012519
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,7 +360,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1390012521}
   - component: {fileID: 1390012520}
-  m_Layer: 0
+  - component: {fileID: 1390012522}
+  - component: {fileID: 1390012523}
+  m_Layer: 9
   m_Name: vine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,12 +420,52 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1390012519}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.7, y: 4.06, z: 0}
+  m_LocalPosition: {x: 2.7, y: 6.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 640588779}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1390012522
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1390012519}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.025054216, y: -2.0498192}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 1}
+    oldSize: {x: 0.53333336, y: 4.266667}
+    newSize: {x: 0.53333336, y: 4.266667}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.14916992, y: 4.0996385}
+  m_EdgeRadius: 0
+--- !u!114 &1390012523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1390012519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 443ddbdfd36ae5d4689ced6c296aa8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angleMagnitude: 45
+  timeMultiplier: 1.6
+  maxReleaseForce: 4
 --- !u!1 &1747466164
 GameObject:
   m_ObjectHideFlags: 0
