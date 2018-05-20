@@ -306,11 +306,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pixelsPerUnit: 30
   verticalUnitsOnScreen: 8
---- !u!4 &690807803 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4061419052473896, guid: c1ce297799c25f54eb1e61c333dc2cc1,
-    type: 2}
-  m_PrefabInternal: {fileID: 1811213179}
 --- !u!1 &999929460
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,17 +642,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114673900275200918, guid: c1ce297799c25f54eb1e61c333dc2cc1,
-        type: 2}
-      propertyPath: _hitChestPosition
-      value: 
-      objectReference: {fileID: 690807803}
-    - target: {fileID: 114673900275200918, guid: c1ce297799c25f54eb1e61c333dc2cc1,
-        type: 2}
-      propertyPath: _hitChestPrefab
-      value: 
-      objectReference: {fileID: 1806617563539398, guid: b574dec796d7ec7429141e70d0b712ff,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c1ce297799c25f54eb1e61c333dc2cc1, type: 2}
   m_IsPrefabParent: 0

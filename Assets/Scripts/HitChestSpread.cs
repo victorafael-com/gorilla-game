@@ -33,6 +33,7 @@ public class HitChestSpread : MonoBehaviour {
 	}
 	public void StopSpreading(){
 		spreading = false;
+		transform.parent = null;
 		StartCoroutine (FadeOut ());
 	}
 	IEnumerator FadeOut(){

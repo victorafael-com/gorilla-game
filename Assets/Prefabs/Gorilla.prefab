@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4061419052473896}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HitChestPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4915154222476076}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: VinePosition
   m_TagString: Untagged
   m_Icon: {fileID: -2349822300998112484, guid: 0000000000000000d000000000000000, type: 0}
@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 50492438890943688}
   - component: {fileID: 114673900275200918}
   - component: {fileID: 114859029953496578}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gorilla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4176839152713514}
   - component: {fileID: 212482420548458004}
   - component: {fileID: 95790975367203868}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,11 +198,16 @@ MonoBehaviour:
   movementSpeed: 2
   jumpSpeed: 6
   _rigidBody: {fileID: 50492438890943688}
+  _capsuleCollider: {fileID: 70427750577610100}
   _animator: {fileID: 95790975367203868}
   _controls: {fileID: 114859029953496578}
   _vinePosition: {fileID: 4915154222476076}
-  _hitChestPrefab: {fileID: 0}
-  _hitChestPosition: {fileID: 0}
+  _hitChestPrefab: {fileID: 1806617563539398, guid: b574dec796d7ec7429141e70d0b712ff,
+    type: 2}
+  _hitChestPosition: {fileID: 4061419052473896}
+  _movementRaycastMask:
+    serializedVersion: 2
+    m_Bits: 1025
 --- !u!114 &114859029953496578
 MonoBehaviour:
   m_ObjectHideFlags: 1
