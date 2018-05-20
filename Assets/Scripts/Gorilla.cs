@@ -30,6 +30,7 @@ public class Gorilla : MonoBehaviour {
 	public bool FacingRight{ get; private set; }
 
 	private bool onVine = false;
+	private bool canMove = true;
 	private Vine currentVine;
 
 
@@ -53,9 +54,15 @@ public class Gorilla : MonoBehaviour {
 
 		if (!Grounded) {
 			_animator.SetFloat ("ySpeed", ySpeed);
+		} else if (currentVine != null) {
+			currentVine = null; //Allows gorilla to hold again on the same vine if he hit the ground
+			canMove = true;
 		}
 
-		velocity.x = _controls.inputX * movementSpeed;
+		if (canMove) {
+			velocity.x = _controls.inputX * movementSpeed;
+		}
+
 		if ((velocity.x < 0 && FacingRight) || (velocity.x > 0 && !FacingRight)) {
 			FacingRight = !FacingRight;
 			transform.localScale = new Vector3 (FacingRight ? 1 : -1, 1, 1);
@@ -70,11 +77,15 @@ public class Gorilla : MonoBehaviour {
 	}
 
 
-	public void SetOnVine(Vine v){
+	public bool SetOnVine(Vine v){
+		if (currentVine == v) {
+			return false;
+		}
+
 		transform.parent = v.transform;
 		transform.localEulerAngles = Vector3.zero;
 		Vector3 pos = transform.localPosition;
-		pos.x = -_vinePosition.localPosition.x;
+		pos.x = -_vinePosition.localPosition.x * (FacingRight ? 1 : -1);
 		transform.localPosition = pos;
 
 		_rigidBody.isKinematic = true;
@@ -84,13 +95,21 @@ public class Gorilla : MonoBehaviour {
 		onVine = true;
 
 		_animator.SetBool ("vine", true);
+
+		return true;
 	}
 
 	public void JumpPressed(){
 		if (Grounded && !onVine) {
 			_rigidBody.velocity = new Vector2 (_rigidBody.velocity.x, jumpSpeed);
 		} else if (onVine) {
-
+			onVine = false;
+			canMove = false;
+			transform.parent = null;
+			transform.eulerAngles = Vector2.zero;
+			_animator.SetBool ("vine", false);
+			_rigidBody.isKinematic = false;
+			_rigidBody.velocity = currentVine.GetReleaseForce ();
 		}
 	}
 	public void Attack(){

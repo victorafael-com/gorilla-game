@@ -13,6 +13,11 @@ public class Vine : MonoBehaviour {
 	private float releaseTime;
 	private bool running = false;
 
+	[Range(-10,10)]
+	public float debug;
+	public float sin;
+	public float cos;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -20,16 +25,23 @@ public class Vine : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		sin = Mathf.Sin (debug);
+		cos = Mathf.Cos (debug);
 		if (running) {
 			t += Time.deltaTime * timeMultiplier * currentDirection;
 			transform.localEulerAngles = Vector3.forward * Mathf.Sin (t) * angleMagnitude;
 		}
 	}
 
+	public Vector2 GetReleaseForce(){
+		float direction = Mathf.Sign (Mathf.Cos (t)) * currentDirection;
+		float intensity = Mathf.InverseLerp (-1, 1, Mathf.Sin (t)) * direction;
+		return transform.right * intensity * maxReleaseForce;
+	}
+
 	void OnTriggerEnter2D(Collider2D other){
 		Gorilla gorilla = other.GetComponent<Gorilla> ();
-		if (gorilla != null) {
-			gorilla.SetOnVine (this);
+		if (gorilla != null && gorilla.SetOnVine (this)) {
 			running = true;
 			currentDirection = gorilla.FacingRight ? 1 : -1;
 		}
