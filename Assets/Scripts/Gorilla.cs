@@ -17,6 +17,7 @@ public class Gorilla : MonoBehaviour {
 	[SerializeField] private GameObject _hitChestPrefab;
 	[SerializeField] private Transform _hitChestPosition;
 	[SerializeField] private LayerMask _movementRaycastMask;
+	[SerializeField] private LayerMask _enemyRaycastMask;
 	#endregion
 
 	private bool __grounded;
@@ -71,10 +72,8 @@ public class Gorilla : MonoBehaviour {
 		if (canMove) {
 			velocity.x = _controls.inputX * movementSpeed;
 			Vector2 pos = _capsuleCollider.offset + Vector2.up * 0.1f;
-			if (!FacingRight)
+			if (velocity.x < 0)
 				pos.x *= -1;
-
-
 
 			if (Mathf.Abs (velocity.x) > 0) {
 				var result = Physics2D.CapsuleCast (transform.TransformPoint (pos), _capsuleCollider.size, _capsuleCollider.direction, 0, Vector2.right * velocity.x,0.2f, _movementRaycastMask);
@@ -138,6 +137,15 @@ public class Gorilla : MonoBehaviour {
 	public void Attack(){
 		if (!dead && currentHitChest == null) {
 			_animator.SetTrigger ("attack");
+
+			Vector2 pos = _capsuleCollider.offset + Vector2.up * 0.1f;
+			if (!FacingRight)
+				pos.x *= -1;
+			var result = Physics2D.CapsuleCast (transform.TransformPoint (pos), _capsuleCollider.size, _capsuleCollider.direction, 0, Vector2.right * (FacingRight ? 1 : -1),1f, _enemyRaycastMask);
+			if (result.collider != null) {
+				result.collider.GetComponent<Hunter> ().Die ();
+			}
+
 		}
 	}
 	public void HitChest(bool state){

@@ -208,6 +208,9 @@ MonoBehaviour:
   _movementRaycastMask:
     serializedVersion: 2
     m_Bits: 1025
+  _enemyRaycastMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &114859029953496578
 MonoBehaviour:
   m_ObjectHideFlags: 1

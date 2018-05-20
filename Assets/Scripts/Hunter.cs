@@ -7,6 +7,7 @@ public class Hunter : MonoBehaviour {
 	public float fearRecoverTime = 5;
 	[Header("Components")]
 	[SerializeField] private Rigidbody2D _rigidbody;
+	[SerializeField] private Collider2D _collider;
 	[SerializeField] private Animator _animator;
 	[SerializeField] private GameObject _bulletPrefab;
 	[SerializeField] private Transform _bulletPos;
@@ -14,6 +15,7 @@ public class Hunter : MonoBehaviour {
 	private float lastShot;
 	private bool awaken = false;
 	private bool fear = false;
+	private bool alive = true;
 	// Use this for initialization
 	void Start () {
 	}
@@ -24,7 +26,7 @@ public class Hunter : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		if (awaken && Time.time - shotInterval > lastShot) {
+		if (alive && awaken && Time.time - shotInterval > lastShot) {
 			lastShot = Time.time;
 			Instantiate (_bulletPrefab, _bulletPos.position, Quaternion.identity);
 		}
@@ -43,5 +45,13 @@ public class Hunter : MonoBehaviour {
 	}
 	void RecoverFromFear(){
 		_animator.SetBool ("fear", false);
+	}
+	public void Die(){
+		if (alive) {
+			alive = false;
+			_animator.SetTrigger ("die");
+			_collider.enabled = false;
+			_rigidbody.isKinematic = true;
+		}
 	}
 }

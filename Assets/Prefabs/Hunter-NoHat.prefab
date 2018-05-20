@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 212135681505089776}
   m_Layer: 10
   m_Name: Hunter-NoHat
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,7 +122,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!70 &70998258312098944
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -169,6 +169,7 @@ MonoBehaviour:
   shotInterval: 4
   fearRecoverTime: 5
   _rigidbody: {fileID: 50744927195872776}
+  _collider: {fileID: 70998258312098944}
   _animator: {fileID: 95783443563000842}
   _bulletPrefab: {fileID: 1002706921561904, guid: 9148f6264315bf944bc8923236f18b71,
     type: 2}
