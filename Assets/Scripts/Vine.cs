@@ -13,10 +13,9 @@ public class Vine : MonoBehaviour {
 	private float releaseTime;
 	private bool running = false;
 
-	[Range(-10,10)]
-	public float debug;
-	public float sin;
-	public float cos;
+	public float stillTime = 10;
+
+	public Transform finalVinePos;
 
 	// Use this for initialization
 	void Start () {
@@ -25,20 +24,29 @@ public class Vine : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		sin = Mathf.Sin (debug);
-		cos = Mathf.Cos (debug);
 		if (running) {
 			t += Time.deltaTime * timeMultiplier * currentDirection;
 			transform.localEulerAngles = Vector3.forward * Mathf.Sin (t) * angleMagnitude;
+		} else if (t != 0) {
+			t += Time.deltaTime * timeMultiplier * currentDirection;
+			float magnitude = angleMagnitude * Mathf.InverseLerp (releaseTime + stillTime, releaseTime, Time.time);
+			transform.localEulerAngles = Vector3.forward * Mathf.Sin (t) * magnitude;
+			if (magnitude == 0) {
+				t = 0;
+			}
 		}
 	}
 
 	public Vector2 GetReleaseForce(){
 		float direction = Mathf.Sign (Mathf.Cos (t)) * currentDirection;
-		float intensity = Mathf.InverseLerp (-1, 1, Mathf.Sin (t)) * direction;
+
+		float intensity = Mathf.InverseLerp (-1, 1, Mathf.Sin (t));
 		if (direction == -1) {
 			intensity = 1 - intensity;
 		}
+		running = false;
+		releaseTime = Time.time;
+
 		return transform.right * intensity * maxReleaseForce * direction;
 	}
 
@@ -47,6 +55,7 @@ public class Vine : MonoBehaviour {
 		if (gorilla != null && gorilla.SetOnVine (this)) {
 			running = true;
 			currentDirection = gorilla.FacingRight ? 1 : -1;
+			t = 0;
 		}
 	}
 }

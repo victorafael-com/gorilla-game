@@ -73,12 +73,14 @@ public class Gorilla : MonoBehaviour {
 		_rigidBody.velocity = velocity;
 	}
 	public void UpdateVine(){
-		onVine = true;
+		float finalPos = currentVine.finalVinePos.localPosition.y - _vinePosition.localPosition.y;
+		float newPos = Mathf.MoveTowards (transform.localPosition.y, finalPos, Time.deltaTime * 2);
+		transform.localPosition = new Vector3 (transform.localPosition.x, newPos);
 	}
 
 
 	public bool SetOnVine(Vine v){
-		if (currentVine == v) {
+		if (currentVine == v || onVine) {
 			return false;
 		}
 
