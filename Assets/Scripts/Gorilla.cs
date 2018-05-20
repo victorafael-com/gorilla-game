@@ -13,6 +13,8 @@ public class Gorilla : MonoBehaviour {
 	[SerializeField] private Animator _animator;
 	[SerializeField] private Controls _controls;
 	[SerializeField] private Transform _vinePosition;
+	[SerializeField] private GameObject _hitChestPrefab;
+	[SerializeField] private Transform _hitChestPosition;
 	#endregion
 
 	private bool __grounded;
@@ -33,6 +35,7 @@ public class Gorilla : MonoBehaviour {
 	private bool canMove = true;
 	private bool dead;
 	private Vine currentVine;
+	private HitChestSpread currentHitChest;
 
 
 	// Use this for initialization
@@ -124,11 +127,23 @@ public class Gorilla : MonoBehaviour {
 	public void HitChest(bool state){
 		if (Grounded) {
 			_animator.SetBool ("hitChest", state);
+			if (state) {
+				currentHitChest = Instantiate<GameObject> (_hitChestPrefab).GetComponent<HitChestSpread>();
+				currentHitChest.transform.SetParent (_hitChestPosition, false);
+				canMove = false;
+			} else if(currentHitChest != null){
+				canMove = true;
+				currentHitChest.StopSpreading ();
+				currentHitChest = null;
+			}
 		}
 	}
 	public void Die(){
 		if (onVine) {
 			JumpPressed ();
+		}
+		if (currentHitChest != null) {
+			currentHitChest.StopSpreading ();
 		}
 		_animator.SetBool ("dead", true);
 		dead = true;

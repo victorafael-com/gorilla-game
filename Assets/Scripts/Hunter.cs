@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Hunter : MonoBehaviour {
 	public float shotInterval = 4;
+	public float fearRecoverTime = 5;
 	[Header("Components")]
 	[SerializeField] private Rigidbody2D _rigidbody;
 	[SerializeField] private Animator _animator;
@@ -11,6 +12,7 @@ public class Hunter : MonoBehaviour {
 	[SerializeField] private Transform _bulletPos;
 
 	private float lastShot;
+	private bool fear = false;
 	// Use this for initialization
 	void Start () {
 		lastShot = Time.time;
@@ -22,5 +24,20 @@ public class Hunter : MonoBehaviour {
 			lastShot = Time.time;
 			Instantiate (_bulletPrefab, _bulletPos.position, Quaternion.identity);
 		}
+	}
+
+	public void Fear(){
+		if (fear) { //Only fear once
+			return;
+		}
+
+		_animator.SetBool ("fear", true);
+		fear = true;
+		lastShot = Time.time + fearRecoverTime;
+
+		Invoke ("RecoverFromFear", fearRecoverTime);
+	}
+	void RecoverFromFear(){
+		_animator.SetBool ("fear", false);
 	}
 }

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 58540312646765962}
   - component: {fileID: 114025411480790172}
   - component: {fileID: 50729843319512668}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PinkBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
