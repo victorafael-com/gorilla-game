@@ -136,7 +136,7 @@ public class Gorilla : MonoBehaviour {
 		}
 	}
 	public void Attack(){
-		if (!dead && currentHitChest != null) {
+		if (!dead && currentHitChest == null) {
 			_animator.SetTrigger ("attack");
 		}
 	}

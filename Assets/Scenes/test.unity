@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &114705405 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4581381100575660, guid: c1ce297799c25f54eb1e61c333dc2cc1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1811213179}
 --- !u!114 &114705407 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114673900275200918, guid: c1ce297799c25f54eb1e61c333dc2cc1,
@@ -473,11 +478,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 518887798}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.75, y: 2.35, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.61, y: 2.35, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1467250005}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &518887803
@@ -776,6 +781,56 @@ MonoBehaviour:
   - {fileID: 1103900629046084, guid: d5fd250cda030514892e43eabf9d8fe5, type: 2}
   platformDistance: 1.6
   createPlatformDistance: 20
+  config:
+    firstEnemyChance: 0.45
+    secondEnemyChance: 0.05
+    chanceIncrease: 0.002
+    enemyPrefabs:
+    - {fileID: 1014197397908074, guid: f6b780051e902bf47b14ca5b4e3a4dd5, type: 2}
+    - {fileID: 1014197397908074, guid: 0111721049deef841a7479595a64a524, type: 2}
+--- !u!1 &1467250003
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1467250005}
+  - component: {fileID: 1467250004}
+  m_Layer: 8
+  m_Name: CameraTripod
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1467250004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1467250003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac99b5f919adc21419a3c11b4a024f96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 2
+  target: {fileID: 114705405}
+--- !u!4 &1467250005
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1467250003}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 518887802}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1811213179
 Prefab:
   m_ObjectHideFlags: 0

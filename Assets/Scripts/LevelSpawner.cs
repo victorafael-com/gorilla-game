@@ -14,6 +14,8 @@ public class LevelSpawner : MonoBehaviour {
 	private List<Platform> platforms;
 	private Platform lastPlatform;
 
+	public Config config;
+
 	// Use this for initialization
 	void Start () {
 		lastPlatform = firstPlatform;
@@ -35,5 +37,6 @@ public class LevelSpawner : MonoBehaviour {
 		var prefab = platformPrefabs [Random.Range (0, platformPrefabs.Length)];
 		lastPlatform = Instantiate<GameObject> (prefab, lastPlatform.end.position + Vector3.right * platformDistance, Quaternion.identity).GetComponent<Platform>();
 		platforms.Add (lastPlatform);
+		lastPlatform.Setup (config);
 	}
 }
