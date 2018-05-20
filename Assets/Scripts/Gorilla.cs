@@ -31,6 +31,7 @@ public class Gorilla : MonoBehaviour {
 
 	private bool onVine = false;
 	private bool canMove = true;
+	private bool dead;
 	private Vine currentVine;
 
 
@@ -40,6 +41,9 @@ public class Gorilla : MonoBehaviour {
 	}
 	
 	void Update () {
+		if (dead)
+			return;
+		
 		if (!onVine) {
 			UpdateControls ();
 		} else {
@@ -121,5 +125,12 @@ public class Gorilla : MonoBehaviour {
 		if (Grounded) {
 			_animator.SetBool ("hitChest", state);
 		}
+	}
+	public void Die(){
+		if (onVine) {
+			JumpPressed ();
+		}
+		_animator.SetBool ("dead", true);
+		dead = true;
 	}
 }
