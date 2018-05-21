@@ -30,7 +30,7 @@ public class Platform : MonoBehaviour {
 			Transform first = RandomItem<Transform> (enemyPositions);
 			if (Random.value < config.firstEnemyChance + config.chanceIncrease * transform.position.x) {
 				
-				Instantiate (RandomItem<GameObject> (config.enemyPrefabs), first.position, Quaternion.identity);
+				DoInstantiate (RandomItem<GameObject> (config.enemyPrefabs), first.position);
 			}
 
 			if (enemySlots > 1) {
@@ -40,7 +40,7 @@ public class Platform : MonoBehaviour {
 				} while(second == first);
 
 				if (Random.value < config.secondEnemyChance + config.chanceIncrease * transform.position.x) {
-					Instantiate (RandomItem<GameObject> (config.enemyPrefabs), second.position, Quaternion.identity);
+					DoInstantiate (RandomItem<GameObject> (config.enemyPrefabs), second.position);
 				}
 			}
 		}
@@ -49,9 +49,13 @@ public class Platform : MonoBehaviour {
 			int bananaCount = Random.Range (1, config.maxBanana + Mathf.FloorToInt (transform.position.x / config.maxBananaIncrement));
 			for (int i = 0; i < bananaCount; i++) {
 				Rect r = RandomItem<Rect> (bananaSpawnPos);
-				Instantiate (config.bananaPrefab, transform.position + new Vector3 (Random.Range (r.xMin, r.xMax), Random.Range (r.yMin, r.yMax)), Quaternion.identity);
+				DoInstantiate (config.bananaPrefab, transform.position + new Vector3 (Random.Range (r.xMin, r.xMax), Random.Range (r.yMin, r.yMax)));
 			}
 		}
+	}
+
+	private void DoInstantiate(GameObject prefab, Vector3 position){
+		Instantiate <GameObject>(prefab, position, Quaternion.identity).transform.parent = transform;
 	}
 
 	private T RandomItem<T>(T[] arr){

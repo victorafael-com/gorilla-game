@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Gorilla : MonoBehaviour {
+	public event UnityAction onDie;
 	#region Inspector Fields
 	[Header("Behaviour")]
 	public float movementSpeed;
 	public float jumpSpeed;
+	public float dieY;
 	
 	[Header("Components")]
 	[SerializeField] private Rigidbody2D _rigidBody;
@@ -90,6 +93,14 @@ public class Gorilla : MonoBehaviour {
 
 		_animator.SetBool ("moving", velocity.x != 0);
 
+
+		if (transform.position.y < dieY) {
+			dead = true;
+			velocity.x = 0;
+			if (onDie != null)
+				onDie ();
+		}
+
 		_rigidBody.velocity = velocity;
 	}
 	public void UpdateVine(){
@@ -171,5 +182,8 @@ public class Gorilla : MonoBehaviour {
 		}
 		_animator.SetBool ("dead", true);
 		dead = true;
+
+		if (onDie != null)
+			onDie ();
 	}
 }

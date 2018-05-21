@@ -197,6 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 2.45
   jumpSpeed: 6
+  dieY: -2
   _rigidBody: {fileID: 50492438890943688}
   _capsuleCollider: {fileID: 70427750577610100}
   _animator: {fileID: 95790975367203868}
