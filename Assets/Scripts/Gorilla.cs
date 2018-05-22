@@ -60,10 +60,22 @@ public class Gorilla : MonoBehaviour {
 		}
 	}
 
+	private RaycastHit2D CapsuleCast(Vector2 sizeMultiplier, Vector2 direction, float distance){
+		Vector2 pos = _capsuleCollider.offset + Vector2.up * 0.1f;
+
+		Vector2 size = _capsuleCollider.size;
+		size.x *= sizeMultiplier.x;
+		size.y *= sizeMultiplier.y;
+
+		return Physics2D.CapsuleCast (transform.TransformPoint (pos), size, _capsuleCollider.direction, 0, direction,distance, _movementRaycastMask);
+	}
+
 	private void UpdateControls(){
 		Vector2 velocity = _rigidBody.velocity;
 		float ySpeed = velocity.y;
-		Grounded = ySpeed == 0;
+
+		var groundCheck = CapsuleCast (new Vector2 (0.9f, 1), Vector2.down, 0.2f);
+		Grounded = groundCheck.collider != null && ySpeed <= 0;
 
 		if (!Grounded) {
 			_animator.SetFloat ("ySpeed", ySpeed);
@@ -79,7 +91,7 @@ public class Gorilla : MonoBehaviour {
 				pos.x *= -1;
 
 			if (Mathf.Abs (velocity.x) > 0) {
-				var result = Physics2D.CapsuleCast (transform.TransformPoint (pos), _capsuleCollider.size, _capsuleCollider.direction, 0, Vector2.right * velocity.x,0.2f, _movementRaycastMask);
+				var result = CapsuleCast (Vector2.one, Vector2.right * velocity.x, 0.2f); 
 				if (result.collider != null && !result.collider.isTrigger) {
 					velocity.x = 0;
 				}
